@@ -1,4 +1,5 @@
 .tscache
+.idea
 .baseDir.ts
 .env
 dist
