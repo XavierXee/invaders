@@ -7,42 +7,31 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: "./public",
+                        cwd: "./app/data",
                         src: ["**"],
+                        dest: "./dist/data"
+                    },
+                    {
+                        expand: true,
+                        cwd: "./build",
+                        src: "**/*",
                         dest: "./dist/public"
                     },
-                    {
-                        expand: true,
-                        cwd: "./views",
-                        src: ["**"],
-                        dest: "./dist/views"
-                    },
-                    {
-                        expand: true,
-                        cwd: "./client/dist",
-                        src: ["*.html"],
-                        dest: "./dist/views"
-                    },
-                    {
-                        expand: true,
-                        cwd: "./client/dist",
-                        src: ["*.js", "*.js.map", "!*.html"],
-                        dest: "./dist/public"
-                    }
                 ]
             }
         },
         ts: {
             app: {
                 files: [{
-                    src: ["src/\*\*/\*.ts", "!src/.baseDir.ts"],
+                    src: ["app/\*\*/\*.ts", "!app/.baseDir.ts"],
                     dest: "./dist"
                 }],
                 options: {
                     module: "commonjs",
                     target: "es6",
+                    lib: ["esnext"],
                     sourceMap: false,
-                    rootDir: "src"
+                    rootDir: "app"
                 }
             }
         },
@@ -50,10 +39,6 @@ module.exports = function(grunt) {
             ts: {
                 files: ["src/\*\*/\*.ts"],
                 tasks: ["ts"]
-            },
-            views: {
-                files: ["views/**/*.pug"],
-                tasks: ["copy"]
             }
         }
     });

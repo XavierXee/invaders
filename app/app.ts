@@ -1,7 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
-import * as logger from 'morgan';
 import * as path from 'path';
 import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
@@ -10,14 +9,15 @@ import methodOverride = require('method-override');
 require('dotenv').config();
 
 //routes
-import { IndexRoute } from './routes/index';
+import { IndexRoute } from './routes/static/index';
+import { ApiRadar } from './routes/api/api-radar';
 
 /**
  * The server.
  *
  * @class Server
  */
-export class Server {
+export class App {
 
   public app: express.Application;
 
@@ -29,8 +29,8 @@ export class Server {
    * @static
    * @return {ng.auto.IInjectorService} Returns the newly created injector for this app.
    */
-  public static bootstrap(): Server {
-    return new Server();
+  public static bootstrap(): App {
+    return new App();
   }
 
   /**
@@ -49,19 +49,6 @@ export class Server {
 
     //add routes
     this.routes();
-
-    //add api
-    this.api();
-  }
-
-  /**
-   * Create REST API routes
-   *
-   * @class Server
-   * @method api
-   */
-  public api() {
-    //empty for now
   }
 
   /**
@@ -72,11 +59,14 @@ export class Server {
    */
   public config() {
 
-      //add static paths
+    //add static paths
     this.app.use(express.static(path.join(__dirname, 'public')));
     
-    this.app.set('views', path.join(__dirname, 'views'));
-    this.app.set('view engine', 'pug');
+    // this.app.set('views', path.join(__dirname, 'views'));
+    // this.app.set('view engine', 'pug');
+
+    this.app.set('views', path.join(__dirname, 'public'));
+    this.app.set('view engine', 'html');
 
     //mount logger
     //this.app.use(logger('dev'));
@@ -119,11 +109,9 @@ export class Server {
   private routes() {
     let router: express.Router;
     router = express.Router();
-
-    //IndexRoute
     IndexRoute.create(router);
+    ApiRadar.create(router);
 
-    //use router middleware
     this.app.use(router);
   }
 

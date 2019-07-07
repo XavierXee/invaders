@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2015", "esnext"],
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
+    "sourceMap": true
+  },
+  "include": ["server/**/*"],
+  "exclude": ["client", "node_modules", "**/*.spec.ts"]
+}

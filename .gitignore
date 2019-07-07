@@ -1,6 +1,5 @@
 .tscache
-.idea
 .baseDir.ts
-.env
 dist
+build
 node_modules

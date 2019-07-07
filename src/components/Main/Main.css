@@ -1,0 +1,12 @@
+.main {
+  font-family: sans-serif;
+}
+
+.main--button {
+  margin: 10px;
+  min-width: 100px;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  border-radius: 3px;
+}
