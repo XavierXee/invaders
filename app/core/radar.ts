@@ -19,10 +19,6 @@ export class Radar extends Matrix {
         return diff;
     }
 
-    private computeZoneHeight () {
-
-    }
-
     private process(target: SpaceInvader, xIndex: number, yIndex: number): number {
 
         const xStart = xIndex < 0 ? Math.abs(xIndex) : 0;
