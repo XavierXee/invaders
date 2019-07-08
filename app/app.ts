@@ -5,6 +5,8 @@ import * as path from 'path';
 import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
 
+import { Main } from './core/main';
+
 import { IndexRoute } from './routes/static/index';
 import { ApiRadar } from './routes/api/api-radar';
 
@@ -13,15 +15,19 @@ require('dotenv').config();
 export class App {
 
   public app: express.Application;
+  public main: Main;
 
   public static bootstrap(): App {
     return new App();
   }
 
   constructor() {
+    this.main = new Main();
     this.app = express();
-    this.config();
-    this.routes();
+    this.main.init(() => {
+        this.config();
+        this.routes();
+    });
   }
 
   public config() {
@@ -53,7 +59,7 @@ export class App {
     let router: express.Router;
     router = express.Router();
     IndexRoute.create(router);
-    ApiRadar.create(router);
+    ApiRadar.create(router, this.main);
 
     this.app.use(router);
   }

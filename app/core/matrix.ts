@@ -1,15 +1,21 @@
-export class Matrix {
+import { Grid } from '../interfaces/grid';
+
+export class Matrix implements Grid{
 
     public width: number;
     public height: number;
-    public dataString: string;
+    public dataArray: string[];
     public data: string[][];
 
     constructor(input: string) {
-        this.width = input.split('\n')[0].length;
-        this.height = input.split('\n').filter((line) => line.length).length;
-        this.dataString = this.createStringData(input);
         this.data = this.createMatrix(input);
+        this.dataArray = this.createDataArray(input);
+        this.width = this.dataArray[0].length;
+        this.height = this.dataArray.length;
+    }
+
+    private createDataArray(input: string): string[] {
+        return input.toString().split('\n').filter((line) => line.length);
     }
 
     private createMatrix(input: string): string[][] {
@@ -17,12 +23,6 @@ export class Matrix {
             .split('\n')
             .map((line) => line.split(''))
             .filter((line) => line.length);
-    }
-
-    private createStringData(input: string): string {
-        return input
-            .split('\n')
-            .join('');
     }
 
     public getZone(x: number, width: number, y: number, height: number): string {

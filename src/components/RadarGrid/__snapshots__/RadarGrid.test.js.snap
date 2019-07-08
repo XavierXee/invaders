@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+<div
+  className="radar-grid"
+>
+  <div
+    className="grid"
+  >
+    <div
+      className="grid--row"
+    >
+      <div
+        className="grid--cell"
+      >
+        -
+      </div>
+      <div
+        className="grid--cell"
+      >
+        -
+      </div>
+      <div
+        className="grid--cell"
+      >
+        -
+      </div>
+    </div>
+    <div
+      className="grid--row"
+    >
+      <div
+        className="grid--cell"
+      >
+        o
+      </div>
+      <div
+        className="grid--cell"
+      >
+        o
+      </div>
+      <div
+        className="grid--cell"
+      >
+        o
+      </div>
+    </div>
+  </div>
+</div>
+`;

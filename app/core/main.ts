@@ -4,10 +4,10 @@ import { Radar } from './radar';
 
 export class Main {
 
-    public static radar: Radar;
-    public static spaceInvaders: SpaceInvader[];
+    public radar: Radar;
+    private spaceInvaders: SpaceInvader[];
 
-    public static init(callback): void {
+    public init(callback): void {
 
         const getRadar: Promise<string> = FileReader.get('radar.txt');
         const getSpaceInvaderOne: Promise<string> = FileReader.get('space-invader-1.txt');
@@ -19,9 +19,17 @@ export class Main {
             this.spaceInvaders.push(new SpaceInvader(values[1], 'space-invader-1'));
             this.spaceInvaders.push(new SpaceInvader(values[2], 'space-invader-2'));
 
-            callback(this.radar.startSpaceInvadersDetection(this.spaceInvaders));
+            callback();
         });
 
+    }
+
+    public getRadarData () {
+        return this.radar.dataArray;
+    }
+
+    public getDetection () {
+        return this.radar.startSpaceInvadersDetection(this.spaceInvaders);
     }
 
     constructor() {}

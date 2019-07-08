@@ -10,9 +10,9 @@ describe('createMatrix', () => {
     });
 });
 
-describe('createStringData', () => {
+describe('createDataArray', () => {
     it('should return a string of all characters of each line', () => {
-        expect(mock['createStringData']('ooo---\n---ooo\n')).toBe('ooo------ooo');
+        expect(mock['createDataArray']('ooo---\n---ooo\n')).toEqual(['ooo---', '---ooo']);
     });
 });
 
