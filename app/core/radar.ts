@@ -1,5 +1,5 @@
-import { Matrix } from '../utils/matrix';
 import { Report } from '../interfaces/report';
+import { Matrix } from './matrix';
 import { SpaceInvader } from './space-invader';
 
 export class Radar extends Matrix {
@@ -11,7 +11,7 @@ export class Radar extends Matrix {
         this.reports = [];
     }
 
-    private compare (source: string, target: string): number {
+    private compareZones (source: string, target: string): number {
         let diff = 0;
         Array.from(source).forEach((point, index) => {
             if (point !== target[index]) diff++;
@@ -36,16 +36,14 @@ export class Radar extends Matrix {
 
         const zone = this.getZone(zoneXStart, zoneWidth, zoneYStart, zoneHeight);
 
-        return this.compare(zone, spaceInvaderZone);
+        return this.compareZones(zone, spaceInvaderZone);
     }
 
-    public startSpaceInvadersDetection(input: SpaceInvader | SpaceInvader[]): Report[] {
+    public startSpaceInvadersDetection(input: SpaceInvader[]): Report[] {
         this.reports = [];
         if (!input) return this.reports;
 
-        const targets = !Array.isArray(input) ? [input] : input;
-
-        targets.forEach((target) => {
+        input.forEach((target) => {
             const xStart = -target.getMedianWidth();
             const xEnd = this.width - target.width + target.getMedianWidth();
             const yStart = -target.getMedianHeight();
@@ -55,7 +53,7 @@ export class Radar extends Matrix {
                 for(let xIndex = xStart; xIndex < xEnd; xIndex++) {
                     const diff = this.process(target, xIndex, yIndex);
 
-                    if (diff < target.getMinDiffToDetect()) {
+                    if (diff < target.getMaxDiffToDetect()) {
                         this.reports.push({
                             coord: {x: xIndex, y: yIndex},
                             target,

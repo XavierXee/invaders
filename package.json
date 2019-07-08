@@ -6,6 +6,7 @@
     "dev": "NODE_ENV=development nodemon ./bin/www",
     "start": "node ./bin/www",
     "build": "react-scripts build && grunt && node ./bin/www --inspect",
+    "build:test": "react-scripts test && react-scripts build && jest && grunt && node ./bin/www --inspect",
     "app:test": "jest",
     "app:build": "grunt && node ./bin/www --inspect",
     "client:start": "react-scripts start",

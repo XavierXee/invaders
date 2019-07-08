@@ -7,7 +7,7 @@ export class Matrix {
 
     constructor(input: string) {
         this.width = input.split('\n')[0].length;
-        this.height = input.split('\n').length;
+        this.height = input.split('\n').filter((line) => line.length).length;
         this.dataString = this.createStringData(input);
         this.data = this.createMatrix(input);
     }

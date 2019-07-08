@@ -1,4 +1,4 @@
-import { Matrix } from '../utils/matrix';
+import { Matrix } from './matrix';
 
 export class SpaceInvader extends Matrix {
 
@@ -17,7 +17,7 @@ export class SpaceInvader extends Matrix {
         return Math.ceil(this.height / 2);
     }
 
-    public getMinDiffToDetect(): number {
+    public getMaxDiffToDetect(): number {
         return Math.ceil((17 * this.width * this.height) / 100);
     }
 }
