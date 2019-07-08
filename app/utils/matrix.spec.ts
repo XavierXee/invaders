@@ -3,35 +3,22 @@ import { Matrix } from './matrix';
 const dataMock = 'ooo---\n---ooo\n';
 const mock = new Matrix(dataMock);
 
-/*
-test('createMatrix', () => {
-    expect(mock.createMatrix(dataMock)).toBe(0);
-});
- */
-
 describe('createMatrix', () => {
     const expected = [['o', 'o', 'o', '-', '-', '-'], ['-', '-', '-', 'o', 'o', 'o']];
     it('two dimensional array from string should match input string lines', () => {
         expect(mock['createMatrix'](dataMock)).toEqual(expect.arrayContaining(expected));
     });
 });
-/*
-describe('getZone', () => {
-    const expected = [['o', 'o', 'o', '-', '-', '-'], ['-', '-', '-', 'o', 'o', 'o']];
-    it('two dimensional array from string should match input string lines', () => {
-        expect(mock['getZone'](-2)).toEqual(expect.arrayContaining(expected));
+
+describe('createStringData', () => {
+    it('should return a string of all characters of each line', () => {
+        expect(mock['createStringData']('ooo---\n---ooo\n')).toBe('ooo------ooo');
     });
 });
-*/
 
-
-/*
-test('createStringData', () => {
-    expect().toBe(0);
+describe('getZone', () => {
+    it('should return a string of the two first character of each line', () => {
+        expect(mock['getZone'](0, 2, 0, 2)).toBe('oo--');
+    });
 });
 
-test('getZone', () => {
-    expect().toBe(0);
-});
-
- */

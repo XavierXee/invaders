@@ -4,12 +4,11 @@ import './RadarGrid.css';
 export class RadarGrid extends React.Component {
     constructor(props){
         super(props);
-        console.log(props);
     };
 
     createCell = (x, y, value) => {
-
-        let cell = <div className='grid--cell'>{value}</div>;
+        const key = `${x}-${x}`;
+        let cell = <div key={key} className='grid--cell'>{value}</div>;
 
         if (this.props.report && this.props.report.length) {
             let isDetected = false;
@@ -23,14 +22,14 @@ export class RadarGrid extends React.Component {
                     targetName = entry.target.name;
                 }
             });
-            if (isDetected) cell = <div className={`grid--cell grid--cell__${targetName}`}>{value}</div>;
+            if (isDetected) cell = <div key={key} className={`grid--cell grid--cell__${targetName}`}>{value}</div>;
         }
 
         return cell;
     };
 
     createGrid = () => {
-        if (!this.props.data) return <div className='error'>No Data</div>;
+        if (!this.props.data || !this.props.data.length) return <div className='error'>No Data</div>;
 
         const grid = [];
         this.props.data.forEach((line, yIndex) => {
@@ -44,9 +43,6 @@ export class RadarGrid extends React.Component {
     };
 
     render() {
-        console.log('render');
-        console.log(this.createGrid());
-
         return(
             <div className="radar-grid">
                 <div className="grid">{this.createGrid()}</div>

@@ -8,6 +8,6 @@
     "outDir": "dist",
     "sourceMap": true
   },
-  "include": ["server/**/*"],
-  "exclude": ["client", "node_modules", "**/*.spec.ts"]
+  "include": ["app/**/*"],
+  "exclude": ["src", "node_modules", "**/*.spec.ts"]
 }

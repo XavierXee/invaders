@@ -7,13 +7,13 @@ export class IndexRoute extends BaseRoute {
         super();
     }
 
-    public static create(router: Router) {
+    public static create(router: Router): void {
         router.get("/", (req: Request, res: Response) => {
             new IndexRoute().index(req, res);
         });
     }
 
-    public index(req: Request, res: Response) {
+    public index(req: Request, res: Response): void {
         this.title = "Space Invaders Detector";
         this.render(req, res, "index");
     }

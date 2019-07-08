@@ -7,10 +7,9 @@ export class FileReader {
 
         const baseDataPath = process.env.DATA_PATH;
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve: any, reject: any) => {
             fs.readFile(path.join(__dirname, `${baseDataPath}/${fileName}`), (err, data) => {
-                // TODO : Move to error handler
-                if (err) return reject(err);
+                if (err) return reject('File not found');
 
                 return resolve(data.toString());
             });

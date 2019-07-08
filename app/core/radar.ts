@@ -20,26 +20,22 @@ export class Radar extends Matrix {
     }
 
     private process(target: SpaceInvader, xIndex: number, yIndex: number): number {
-
-        const xStart = xIndex < 0 ? Math.abs(xIndex) : 0;
         let zoneWidth = xIndex > this.width - target.width ? this.width - xIndex : target.width;
         zoneWidth = xIndex < 0 ? this.width + xIndex : zoneWidth;
 
-        const yStart = yIndex < 0 ? Math.abs(yIndex) : 0;
         let zoneHeight = yIndex > this.height - target.height ? this.height - yIndex : target.height;
         zoneHeight = yIndex < 0 ? this.height + yIndex : zoneHeight;
 
-        const spaceInvaderZone = target.getZone(
-            xStart,
-            zoneWidth,
-            yStart,
-            zoneHeight
-        );
+        const xStart = xIndex < 0 ? Math.abs(xIndex) : 0;
+        const yStart = yIndex < 0 ? Math.abs(yIndex) : 0;
+
+        const spaceInvaderZone = target.getZone(xStart, zoneWidth, yStart, zoneHeight);
 
         let zoneYStart = yIndex < 0 ? 0 : yIndex;
         let zoneXStart = xIndex < 0 ? 0 : xIndex;
 
         const zone = this.getZone(zoneXStart, zoneWidth, zoneYStart, zoneHeight);
+
         return this.compare(zone, spaceInvaderZone);
     }
 

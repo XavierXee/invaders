@@ -25,16 +25,23 @@ export class Main extends React.Component {
         return new Array(50).fill(new Array(100).join('-'), 0);
     };
 
-    getRadar = event => {
-        API.getRadarData().then((res, err) => {
-            this.setState({
-                data: res.data,
-                report: null
+    getRadar = () => {
+        API.getRadarData()
+            .then((res, err) => {
+                console.log(res, err);
+                this.setState({
+                    data: res.data,
+                    report: null
+                });
+            })
+            .catch((err) => {
+                this.setState(prevState => {
+                    return Object.assign(prevState, {error: err.response.data});
+                });
             });
-        });
     };
 
-    detect = event => {
+    detect = () => {
         Promise.all([API.getRadarData(), API.detectInvaders()])
             .then((values) => {
                 console.log(values);
@@ -46,6 +53,11 @@ export class Main extends React.Component {
                     });
                 });
             })
+            .catch((err)  => {
+                this.setState(prevState => {
+                    return Object.assign(prevState, {error: err});
+                })
+            });
     };
 
     render() {
@@ -53,9 +65,12 @@ export class Main extends React.Component {
         const report = this.state.report;
         const error = this.state.error;
 
-        if (this.state.error) return (
+        console.log(error);
+
+        if (error) return (
             <div className='main'>
-                <Error data={error}/>
+                <h1>Space Invaders Detector</h1>
+                <Error error={error}/>
             </div>
         );
 

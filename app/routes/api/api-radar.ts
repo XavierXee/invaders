@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Request, Response, Router } from 'express';
 import { BaseRoute } from '../router';
 import { Main } from "../../core/main";
 import { FileReader } from "../../utils/file-reader";
@@ -26,7 +26,7 @@ export class ApiRadar extends BaseRoute {
                 this.send(req, res, dataArray);
             })
             .catch(() => {
-                res.send('Unable to get data from file')
+                res.status(500).send('Unable to get data from file')
             });
     }
 

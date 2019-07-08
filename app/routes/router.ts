@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 export class BaseRoute {
 
@@ -10,14 +10,14 @@ export class BaseRoute {
     this.scripts = [];
   }
 
-  public render(req: Request, res: Response, view: string, options?: Object) {
+  public render(req: Request, res: Response, view: string): void {
     res.locals.BASE_URL = "/";
     res.locals.scripts = this.scripts;
     res.locals.title = this.title;
-    res.render(view, options);
+    res.render(view);
   }
 
-  public send(req: Request, res: Response, resource:any, options?: Object) {
+  public send(req: Request, res: Response, resource:any): void {
     res.locals.BASE_URL = "/";
     res.locals.scripts = this.scripts;
     res.locals.title = this.title;
