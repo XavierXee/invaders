@@ -9,9 +9,9 @@ export class Main {
 
     public static init(callback): void {
 
-        const getRadar = FileReader.get('radar.txt');
-        const getSpaceInvaderOne = FileReader.get('space-invader-1.txt');
-        const getSpaceInvaderTwo = FileReader.get('space-invader-2.txt');
+        const getRadar: Promise<string> = FileReader.get('radar.txt');
+        const getSpaceInvaderOne: Promise<string> = FileReader.get('space-invader-1.txt');
+        const getSpaceInvaderTwo: Promise<string> = FileReader.get('space-invader-2.txt');
 
         Promise.all([getRadar, getSpaceInvaderOne, getSpaceInvaderTwo]).then((values) => {
             this.spaceInvaders = [];

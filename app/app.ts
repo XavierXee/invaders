@@ -35,7 +35,7 @@ export class App {
       extended: true
     }));
 
-    this.app.use(cookieParser('SECRET_GOES_HERE'));
+    this.app.use(cookieParser(process.env.COOKIE_PARSER_SECRET));
     this.app.use(methodOverride());
 
     global.Promise = require('q').Promise;

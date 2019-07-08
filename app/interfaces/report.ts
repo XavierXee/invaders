@@ -1,5 +1,5 @@
 import { Coord } from './coord';
-import {SpaceInvader} from "../core/space-invader";
+import { SpaceInvader } from "../core/space-invader";
 
 export interface Report {
     coord: Coord;

@@ -27,8 +27,7 @@ export class Main extends React.Component {
 
     getRadar = () => {
         API.getRadarData()
-            .then((res, err) => {
-                console.log(res, err);
+            .then((res) => {
                 this.setState({
                     data: res.data,
                     report: null
@@ -44,8 +43,6 @@ export class Main extends React.Component {
     detect = () => {
         Promise.all([API.getRadarData(), API.detectInvaders()])
             .then((values) => {
-                console.log(values);
-
                 this.setState(prevState => {
                     return Object.assign(prevState, {
                         data: values[0].data,
@@ -64,8 +61,6 @@ export class Main extends React.Component {
         const data = this.state.data;
         const report = this.state.report;
         const error = this.state.error;
-
-        console.log(error);
 
         if (error) return (
             <div className='main'>
